@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criminal List</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .image-item {
+      position: relative;
+      display: inline-block;
+      margin: 10px;
+      text-align: center;
+    }
+
+    .image-item img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .image-item img:hover {
+      transform: scale(1.1);
+    }
+
+    .info {
+      margin-top: 10px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Criminal List</h1>
+      <p>Collected images from the database</p>
+    </header>
+
+    <section class="image-grid">
+      {% for image in images %}
+        <div class="image-item">
+          <img src="{{ url_for('send_image', filename=image) }}" alt="Criminal Image">
+          
+          {% set user_id = image.split('_')[0] %}
+          {% if user_id in criminal_info %}
+            <div class="info">
+              <p>Name: {{ criminal_info[user_id].name }}</p>
+              <p>Crime: {{ criminal_info[user_id].crime }}</p>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </section>
+  </div>
+</body>
+</html>

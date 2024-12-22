@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-image: url('{{ url_for("static", filename="images/background.jpg") }}');
+  background-size: cover; /* Ensure the image covers the whole page */
+  background-position: center center; /* Center the background image */
+  background-attachment: fixed; /* Make the background fixed during scrolling */
+  margin: 0; /* Remove default margin */
+  height: 100vh; /* Make the body take up the full height of the viewport */
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Adds a white translucent background to the container */
+  border-radius: 10px; /* Optional: rounds the corners of the container */
+}
+
+header {
+  margin-bottom: 40px;
+}
+
+h1 {
+  font-size: 32px;
+  color: #333;
+}
+
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);  /* 6 columns */
+  gap: 20px;
+  justify-items: center;
+}
+
+.image-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.image-item img:hover {
+  transform: scale(1.1);  /* Zoom effect on hover */
+}
+
+.row-break {
+  grid-column: span 6;  /* Forces a break after every 6 images */
+}
