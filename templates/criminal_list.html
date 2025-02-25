@@ -6,15 +6,24 @@
   <title>Criminal List</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   <style>
+    .container {
+      margin: 20px;
+    }
+
+    .image-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
     .image-item {
       position: relative;
-      display: inline-block;
-      margin: 10px;
+      width: 200px;
       text-align: center;
     }
 
     .image-item img {
-      max-width: 100%;
+      width: 100%;
       height: auto;
       border-radius: 8px;
       transition: transform 0.3s;
@@ -31,17 +40,31 @@
       padding: 5px;
       border-radius: 5px;
     }
+    a {
+      color: blue; /* Text color */
+      text-decoration: none; /* Removes underline */
+      font-size: 25px; /* Font size */
+
+    }
+    
+    a:hover {
+        color: red; /* Change text color on hover */
+        text-decoration: underline; /* Underline text on hover */
+    }
   </style>
 </head>
 <body>
+  
   <div class="container">
+    <a href="{{ url_for('index') }}">Home</a> <br>
     <header>
+      <br>
       <h1>Criminal List</h1>
       <p>Collected images from the database</p>
     </header>
 
     <section class="image-grid">
-      {% for image in images %}
+      {% for image in camera_captures + uploaded_files %}
         <div class="image-item">
           <img src="{{ url_for('send_image', filename=image) }}" alt="Criminal Image">
           
