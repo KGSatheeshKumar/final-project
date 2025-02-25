@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recognition Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        a {
+            color: blue; /* Text color */
+            text-decoration: none; /* Removes underline */
+            font-size: 25px; /* Font size */
+      
+          }
+          
+          a:hover {
+              color: red; /* Change text color on hover */
+              text-decoration: underline; /* Underline text on hover */
+          }
+    </style>
+
+</head>
+<center>
+<body>
+<a href="{{ url_for('index') }}">Home</a> <br>
+  <h1>Recognition Result</h1>
+  <h2>{{ name }} - {{ criminal_info.name }}</h2>
+  <p>Confidence: {{ confidence }}</p>
+
+  <!-- Display the recognized image -->
+  <img src="{{ url_for('send_image', filename=image_path) }}" alt="Recognized Image">
+
+</body>
+</center>
+</html>
